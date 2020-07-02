@@ -4,7 +4,7 @@ import React from "react"
 
 const App = React.createClass({
   render: function () {
-    return <h3>Aplicaçsão</h3>
+    return <h3>Aplicação</h3>
   },
 })
 export default App
