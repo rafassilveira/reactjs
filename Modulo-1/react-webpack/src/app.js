@@ -1,10 +1,10 @@
-"use strict";
+"use strict"
 
-import React from "react";
+import React from "react"
 
 const App = React.createClass({
   render: function () {
-    return <h3>Aplicaçsão</h3>;
+    return <h3>Aplicaçsão</h3>
   },
-});
-export default App;
+})
+export default App
