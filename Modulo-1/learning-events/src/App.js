@@ -1,19 +1,14 @@
 import React, { Component } from "react";
-import Title from "./Title";
-import Square from "./Square";
-import Button from './Button'
+import LikeButton from './like-button'
+import SeachButton from './search-button'
+
 
 class App extends Component {
   render() {
     return (
-      <div className="container"  onClick={(e)=>{
-		alert('clicou')
-	  }} >
-			<Button> Texto children</Button>	
-        {["blue", "red", "black"].map((square, index) => (
-          <Square key={index} color={square}/>
-        ))}
-        <Title name={"Fernando"} />
+      <div className="container" >
+		<LikeButton />     
+		<SeachButton />	
       </div>
     );
   }
