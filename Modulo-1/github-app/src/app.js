@@ -1,37 +1,52 @@
 import React, { Component } from "react";
-import Search from './components/search'
-import UserInfo from './components/user-info.js'
-import Actions from './components/actions'
-import Repos from './components/repos'
+import AppContent from './components/app-content'
+import ajax from '@fdaciuk/ajax'
 
 
 
-class App extends Component { render() {
-return (
-<div className="app">
+class App extends Component {
+	constructor(){
+		super()
+		this.state={
+			userinfo:null,
+			repos:[],
+			starred:[]
+		}
+	}
+	handleSearch (e) {
+			const value = e.target.value
+			const keyCode = e.which || e.keyCode
+			const ENTER = 13
+			if(keyCode===ENTER){
+				ajax().get(`https://api.github.com/users/${value}`)
+				.then((result)=>{
+					this.setState({
+						
+					userinfo:{						
+					 username:result.name,
+					 photo:result.avatar_url,
+					 login:result.login,
+					 repos:result.public_repos,
+					 followers:result.followers,
+					 following:result.following	
+						
+					 },
+						starred:result.starred_url,
+						repos:result.repos_url
+					})
+					console.log(result)
+				})
+			}
+		}
 	
-	<Search />
-	<UserInfo />
-	<Actions/>
-	
-	<Repos
-		className='repos'
-		title='Repositórios:'
-		repos={[{
-			name:'Nome do repositorio',
-			link:'#'
-		}]}
-		/>
-	<Repos
-		className='starred'
-		title='favoritos:'
-		repos={[{
-			name:'Nome do repositorio',
-			link:'#'
-		}]}
-		/>
-	
-	
-	
-</div>
-); } } export default App;
+	render () {		
+return <AppContent
+				 userinfo={this.state.userinfo}
+				 repos={ this.state.repos	}
+				 starred={this.state.starred}
+				 handleSearch={(e)=>this.handleSearch(e)}
+				 />
+ }
+}
+ 
+export default App;

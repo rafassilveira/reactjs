@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 
 const Repos =({ className,title,repos })=>(
 	<div className={className}>
@@ -18,11 +18,11 @@ Repos.defaultProps ={
 // eslint-disable-next-line
 Repos.propType={
 	// eslint-disable-next-line
-	className:React.PropTypes.string,
+	className:PropTypes.string,
 	// eslint-disable-next-line
-	title:React.PropTypes.isRequired,
+	title:PropTypes.isRequired,
 	// eslint-disable-next-line
-	className:React.PropTypes.array,
+	className:PropTypes.array,
 }
 
 export default Repos

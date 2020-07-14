@@ -1,11 +1,12 @@
 import React from 'react'
 
 
-const Search = () => (
+const Search = ({handleSearch}) => (
 <div className='search'>
 	<input
 		type='search'
 		placeholder='Digiete o nome'
+		onKeyUp={handleSearch}
 		/>
 	</div>
 )
