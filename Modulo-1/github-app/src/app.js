@@ -9,13 +9,17 @@ class App extends Component {
       userinfo: null,
       repos: [],
       starred: [],
+			isFetching:false,
     };
   }
   handleSearch(e) {
     const value = e.target.value;
     const keyCode = e.which || e.keyCode;
     const ENTER = 13;
+		const target= e.target
+		
     if (keyCode === ENTER) {
+			this.setState({isFetching:true})
       ajax()
         .get(`https://api.github.com/users/${value}`)
         .then((result) => {
@@ -28,9 +32,11 @@ class App extends Component {
               followers: result.followers,
               following: result.following,
             },
-          });
-          console.log(result);
-        });
+						repos:[],
+						starred:[]
+          })         
+        })
+				.always(()=>this.setState({isFetching:false }))
     }
   }
   handleRepos = () => {
@@ -55,11 +61,9 @@ class App extends Component {
   };
   render() {
     return (
-      <AppContent
-        userinfo={this.state.userinfo}
-        repos={this.state.repos}
-        starred={this.state.starred}
-        handleSearch={(e) => this.handleSearch(e)}
+     <AppContent
+				{...this.state}       
+      	handleSearch={(e) => this.handleSearch(e)}
         handleRepos={this.handleRepos}
         handleStarred={this.handleStarred}
       />

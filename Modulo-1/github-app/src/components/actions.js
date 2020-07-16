@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ PropTypes } from "react";
 import ajax from "@fdaciuk/ajax";
 
 const Actions = ({ handleRepos, handleStarred }) => (
@@ -8,4 +8,8 @@ const Actions = ({ handleRepos, handleStarred }) => (
   </div>
 );
 
+Actions.propTypes = {
+	getRepos:PropTypes.func.isRequired,
+	getStarred:PropTypes.func.isRequired
+}
 export default Actions;
